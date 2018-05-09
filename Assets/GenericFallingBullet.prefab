@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212486120497251986}
   - component: {fileID: 61142194471802248}
   - component: {fileID: 50551037858296520}
+  - component: {fileID: 114642934144357232}
   m_Layer: 0
   m_Name: GenericFallingBullet
   m_TagString: Untagged
@@ -87,6 +88,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &114642934144357232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1129145307293422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e19fe41cd08e4125855a81947f81655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212486120497251986
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 
-	public int health;
-	public int damage;
-	public Rigidbody2D rb;
+	protected int health;
+	protected int damage;
+	protected Rigidbody2D rb;
 
-	private void isKilled() {
+	// Deletes the GameObject if its health is too low
+	protected void IsKilled() {
 		if (health <= 0) {
-			// Remove object
+			Destroy(gameObject);
 		}
 	}
 }
