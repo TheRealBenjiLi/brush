@@ -157,7 +157,8 @@ Transform:
 --- !u!1 &429387866
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 1106573439784864, guid: 0a5e315ca1002424f916220967295f05,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
@@ -177,7 +178,8 @@ GameObject:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 50678453253538982, guid: 0a5e315ca1002424f916220967295f05,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429387866}
   m_BodyType: 0
@@ -196,7 +198,8 @@ Rigidbody2D:
 --- !u!61 &429387868
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 61138384544882186, guid: 0a5e315ca1002424f916220967295f05,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429387866}
   m_Enabled: 1
@@ -221,7 +224,8 @@ BoxCollider2D:
 --- !u!212 &429387869
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 212704558258811066, guid: 0a5e315ca1002424f916220967295f05,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429387866}
   m_Enabled: 1
@@ -265,7 +269,8 @@ SpriteRenderer:
 --- !u!4 &429387870
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 4156873744907570, guid: 0a5e315ca1002424f916220967295f05,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429387866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -278,12 +283,13 @@ Transform:
 --- !u!114 &429387871
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114461096166738470, guid: 0a5e315ca1002424f916220967295f05,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429387866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4223502e1dfcf4f149558adfe99b894f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a78e1f0299064f6082269dbe0bd5e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxPrefab: {fileID: 1108712188358632, guid: 5abfe3bcd5cb046f19dcdf3798828c21,
@@ -340,7 +346,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.356401
+  orthographic size: 6.245188
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

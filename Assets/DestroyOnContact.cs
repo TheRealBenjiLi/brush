@@ -22,15 +22,13 @@ public class DestroyOnContact : MonoBehaviour {
 		t++;
 	}
 
-	public void SetTimeLimit (int newTimeLimit) {
-		timeLimit = newTimeLimit;
-	}
-
 	public void OnCollisionEnter2D (Collision2D col) {
 		if (col.gameObject.tag == targetTag) {
 			Entity script = col.gameObject.GetComponent<Entity>();
 			script.TakeDamage(damage);
 		}
-		Destroy(gameObject);
+		if (targetTag == "Player") {
+			Destroy(gameObject);
+		}
 	}
 }
