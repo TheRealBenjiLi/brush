@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class TestBoss : Entity {
 
+	public GameObject bulletPrefab;
+
 	private int t;
 	private Vector2 direction;
 	private Vector3 offset;
 	private int prevBulletTime;
 
-	public GameObject bulletPrefab;
-
 	// Use this for initialization
 	public void Start () {
-		this.health = 10;
-		this.damage = 1;
+		health = 1;
+		damage = 1;
 		this.rb = GetComponent<Rigidbody2D>();
 		t = 0;
 		prevBulletTime = t;
@@ -32,7 +32,7 @@ public class TestBoss : Entity {
 
 	// Movement for the boss
 	private void Move (int t) {
-		if (t % 300 == 0) {
+		if (t % 200 == 0) {
 			rb.velocity = direction;
 			direction *= -1;
 		}

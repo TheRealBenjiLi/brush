@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 429387871}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,8 +269,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429387866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.85, y: -3.03, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: -4.46, y: -3.19, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -286,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4223502e1dfcf4f149558adfe99b894f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitboxPrefab: {fileID: 1108712188358632, guid: 5abfe3bcd5cb046f19dcdf3798828c21,
+    type: 2}
 --- !u!1 &523521071
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +340,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.4869857
+  orthographic size: 6.356401
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -378,7 +380,7 @@ GameObject:
   - component: {fileID: 724261190}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -585,7 +587,7 @@ GameObject:
   - component: {fileID: 1594013444}
   m_Layer: 0
   m_Name: TestBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -816,7 +818,7 @@ GameObject:
   - component: {fileID: 2118472564}
   m_Layer: 0
   m_Name: Wall left
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -897,8 +899,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2118472563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.66, y: -3.48, z: 0}
-  m_LocalScale: {x: 0.20224199, y: 3.3932729, z: 1}
+  m_LocalPosition: {x: -10.6, y: -3.48, z: 0}
+  m_LocalScale: {x: 1.526197, y: 1.3624613, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3

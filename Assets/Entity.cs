@@ -9,9 +9,14 @@ public class Entity : MonoBehaviour {
 	protected Rigidbody2D rb;
 
 	// Deletes the GameObject if its health is too low
-	protected void IsKilled() {
+	protected void IsKilled () {
 		if (health <= 0) {
 			Destroy(gameObject);
 		}
+	}
+
+	// Harmful entities can call this function to deal damage
+	public void TakeDamage (int dmg) {
+		health -= dmg;
 	}
 }

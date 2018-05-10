@@ -99,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e19fe41cd08e4125855a81947f81655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLimit: 9999
+  targetTag: Player
+  damage: 1
 --- !u!212 &212486120497251986
 SpriteRenderer:
   m_ObjectHideFlags: 1
