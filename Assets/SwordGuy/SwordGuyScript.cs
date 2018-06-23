@@ -34,23 +34,23 @@ public class SwordGuyScript : Player {
 	protected void Attack () {
 		if (Input.GetButtonDown("Fire1")) {
 			if (Input.GetAxis("Vertical") < 0.0f) {
-				GameObject hitbox = Instantiate(hitboxPrefab, rb.transform.position -
-					attackOffsetVertical, rb.transform.rotation);
+				GameObject hitbox = Instantiate(hitboxPrefab, transform.position -
+					attackOffsetVertical, transform.rotation);
 				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
 					GetComponent<Collider2D>());
 			} else if (Input.GetAxis("Vertical") > 0.0f) {
-				GameObject hitbox = Instantiate(hitboxPrefab, rb.transform.position +
-					attackOffsetVertical, rb.transform.rotation);
+				GameObject hitbox = Instantiate(hitboxPrefab, transform.position +
+					attackOffsetVertical, transform.rotation);
 				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
 					GetComponent<Collider2D>());
 			} else if (faceDirection) {
-				GameObject hitbox = Instantiate(hitboxPrefab, rb.transform.position +
-					attackOffsetHorizontal, rb.transform.rotation);
+				GameObject hitbox = Instantiate(hitboxPrefab, transform.position +
+					attackOffsetHorizontal, transform.rotation);
 				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
 					GetComponent<Collider2D>());
 			} else {
-				GameObject hitbox = Instantiate(hitboxPrefab, rb.transform.position -
-					attackOffsetHorizontal, rb.transform.rotation);
+				GameObject hitbox = Instantiate(hitboxPrefab, transform.position -
+					attackOffsetHorizontal, transform.rotation);
 				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
 					GetComponent<Collider2D>());
 			}

@@ -132,3 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splitsRemaining: 2
+  diameter: 4
+  bulletPrefab: {fileID: 1129145307293422, guid: f23bcabe4eeeb46509498678bd188fd6,
+    type: 2}
