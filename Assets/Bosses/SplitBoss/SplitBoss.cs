@@ -10,8 +10,9 @@ public class SplitBoss : Entity {
 
 	private int t;
 	private int lastAction;
+	private const int waitTime = 150;
 	private bool grounded;
-	private int splitFactor;
+	private const int splitFactor = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,6 @@ public class SplitBoss : Entity {
 		t = 0;
 		lastAction = t;
 		grounded = false;
-		splitFactor = 2;
 	}
 
 	// Update is called once per frame
@@ -32,8 +32,8 @@ public class SplitBoss : Entity {
 	}
 
 	private void Action () {
-		if (t > lastAction + 150 && grounded) {
-			// Randomly jump or attack
+		if (t > lastAction + waitTime && grounded) {
+			// Randomly jumps or charges at the player
 			if (Random.value > 0.5) {
 				Vector2 velo = 500f * Vector2.up;
 				if (Random.value > 0.5) {
@@ -44,17 +44,11 @@ public class SplitBoss : Entity {
 				rb.AddForce(velo);
 				grounded = false;
 			} else {
-				float[] xPosVals = {-0.5f * diameter, 0.5f * diameter};
-				float[] yPosVals = {0.5f * diameter, 0.5f * diameter};
-				float[] xForceVals = {-100.0f, 100.0f};
-				float[] yForceVals = {100.0f, 100.0f};
-				for (int i = 0; i < xPosVals.Length; i++) {
-					Vector3 posOffset = new Vector3(xPosVals[i], yPosVals[i], 1);
-					Vector2 force = new Vector2(xForceVals[i], yForceVals[i]);
-					GameObject bullet = Instantiate(bulletPrefab, transform.position + posOffset, transform.rotation);
-					bullet.GetComponent<Rigidbody2D>().AddForce(force);
-				}
-				lastAction = t;
+				// Charge at the player
+				GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
+				Vector3 direction = player.transform.position - transform.position;
+				rb.velocity = new Vector2(direction.x, direction.y);
+				grounded = false;
 			}
 		} else if (grounded) {
 			rb.velocity = new Vector2(0, 0);
@@ -85,6 +79,7 @@ public class SplitBoss : Entity {
 		if (col.gameObject.tag == "Player") {
 			Entity script = col.gameObject.GetComponent<Entity>();
 			script.TakeDamage(damage);
+			return;
 		}
 		Vector2 colToBoss = gameObject.GetComponent<Renderer>().bounds.center -
 			col.gameObject.GetComponent<Renderer>().bounds.center;
@@ -95,6 +90,8 @@ public class SplitBoss : Entity {
 			colToBoss.y > Mathf.Abs(colToBoss.x)) {
 			lastAction = t;
 			grounded = true;
+		} else {
+			rb.velocity = new Vector2(0, 0);
 		}
 	}
 }
