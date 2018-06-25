@@ -65,7 +65,7 @@ public class Player : Entity {
 			col.gameObject.transform.lossyScale.y);
 		colToPlayer = new Vector2(colToPlayer.x / colScale.x,
 			colToPlayer.y / colScale.y);
-		if ((col.gameObject.tag == "Ground" || col.gameObject.tag == "Platform") &&
+		if (col.gameObject.tag == "Ground" &&
 			colToPlayer.y > Mathf.Abs(colToPlayer.x)) {
 			jumpsRemaining = maxJumpsRemaining;
 		}
