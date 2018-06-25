@@ -48,22 +48,25 @@ public class Player : Entity {
 				y = jumpNormal * jumpMultiplier;
 			}
 		}
-		if (Input.GetButtonUp("Jump") && jumpsRemaining > 0) {
+		if (Input.GetButtonUp("Jump")) {
 			y = 0;
 		}
 		return y;
 	}
 
 	// Current purpose is to reset jumps when contacting the top of a
-	// "Ground" object.
+	// "Ground" object or "Platform" object. If connecting with a platform object
+	// from anywhere aside from the top, ignore collisions
 	// TODO: is there a better way to construct colToPlayer and colScale?
 	public void OnCollisionEnter2D (Collision2D col) {
 		Vector2 colToPlayer = gameObject.GetComponent<Renderer>().bounds.center -
 			col.gameObject.GetComponent<Renderer>().bounds.center;
 		Vector2 colScale = new Vector2(col.gameObject.transform.lossyScale.x,
 			col.gameObject.transform.lossyScale.y);
-		colToPlayer = new Vector2(colToPlayer.x / colScale.x, colToPlayer.y / colScale.y);
-		if (col.gameObject.tag == "Ground" && colToPlayer.y > Mathf.Abs(colToPlayer.x)) {
+		colToPlayer = new Vector2(colToPlayer.x / colScale.x,
+			colToPlayer.y / colScale.y);
+		if ((col.gameObject.tag == "Ground" || col.gameObject.tag == "Platform") &&
+			colToPlayer.y > Mathf.Abs(colToPlayer.x)) {
 			jumpsRemaining = maxJumpsRemaining;
 		}
 	}
