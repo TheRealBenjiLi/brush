@@ -57,16 +57,11 @@ public class Player : Entity {
 	// Current purpose is to reset jumps when contacting the top of a
 	// "Ground" object or "Platform" object. If connecting with a platform object
 	// from anywhere aside from the top, ignore collisions
-	// TODO: is there a better way to construct colToPlayer and colScale?
+	// TODO: the current raycast solution has some holes
 	public void OnCollisionEnter2D (Collision2D col) {
-		Vector2 colToPlayer = gameObject.GetComponent<Renderer>().bounds.center -
-			col.gameObject.GetComponent<Renderer>().bounds.center;
-		Vector2 colScale = new Vector2(col.gameObject.transform.lossyScale.x,
-			col.gameObject.transform.lossyScale.y);
-		colToPlayer = new Vector2(colToPlayer.x / colScale.x,
-			colToPlayer.y / colScale.y);
 		if (col.gameObject.tag == "Ground" &&
-			colToPlayer.y > Mathf.Abs(colToPlayer.x)) {
+			Physics2D.Raycast(transform.position, Vector2.down,
+			Mathf.Infinity, 9).distance <= 1.0f) {
 			jumpsRemaining = maxJumpsRemaining;
 		}
 	}

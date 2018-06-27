@@ -77,17 +77,12 @@ public class SplitBoss : Entity {
 	// Same logic used in Player script to calculate SplitBoss's jump resets
 	public void OnCollisionEnter2D (Collision2D col) {
 		if (col.gameObject.tag == "Player") {
-			Entity script = col.gameObject.GetComponent<Entity>();
+			Entity script = col.gameObject.GetComponentInParent(typeof(Entity)) as Entity;
 			script.TakeDamage(damage);
 			return;
 		}
-		Vector2 colToBoss = gameObject.GetComponent<Renderer>().bounds.center -
-			col.gameObject.GetComponent<Renderer>().bounds.center;
-		Vector2 colScale = new Vector2(col.gameObject.transform.lossyScale.x,
-			col.gameObject.transform.lossyScale.y);
-		colToBoss = new Vector2(colToBoss.x / colScale.x, colToBoss.y / colScale.y);
 		if (col.gameObject.tag == "Ground" &&
-			colToBoss.y > Mathf.Abs(colToBoss.x)) {
+			Physics2D.Raycast(transform.position, Vector2.down).collider.gameObject == col.gameObject) {
 			lastAction = t;
 			grounded = true;
 		} else {
