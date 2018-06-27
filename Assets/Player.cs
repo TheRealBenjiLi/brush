@@ -41,15 +41,15 @@ public class Player : Entity {
 		if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
 			prevJumpStart = t;
 			jumpsRemaining--;
-		}
-		if (Input.GetButton("Jump")) {
+		}	else if (Input.GetButton("Jump")) {
 			float jumpNormal = 1.0f - 0.1f * (t - prevJumpStart);
 			if (jumpNormal > 0) {
 				y = jumpNormal * jumpMultiplier;
 			}
-		}
-		if (Input.GetButtonUp("Jump")) {
-			y = 0;
+		} else if (Input.GetButtonUp("Jump")) {
+			if (y > 0) {
+				y = 0;
+			}
 		}
 		return y;
 	}
