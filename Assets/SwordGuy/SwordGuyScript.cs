@@ -19,12 +19,19 @@ public class SwordGuyScript : Player {
 		faceDirection = true;
 		attackOffsetHorizontal = Vector3.right * 1.25f;
 		attackOffsetVertical = Vector3.up * 1.25f;
+
+		isInAir = true;
+		isMovingHorizontal = false;
+		isAttacking = false;
+		lastMoving = t;
+		defaultHeadPosition = head.transform.localPosition;
 	}
 
 	// Update is called once per frame
 	public void Update () {
 		Move();
 		Attack();
+		Animate();
 		IsKilled();
 		t++;
 	}
