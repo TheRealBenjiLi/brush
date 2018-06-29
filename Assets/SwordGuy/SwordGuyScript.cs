@@ -17,8 +17,6 @@ public class SwordGuyScript : Player {
 		maxJumpsRemaining = 1;
 		jumpsRemaining = maxJumpsRemaining;
 		faceDirection = true;
-		attackOffsetHorizontal = Vector3.right * 1.25f;
-		attackOffsetVertical = Vector3.up * 1.25f;
 
 		isInAir = true;
 		isMovingHorizontal = false;
@@ -40,27 +38,22 @@ public class SwordGuyScript : Player {
 	// If player aims up or down beforehand, the appropriate hitbox will appear.
 	protected void Attack () {
 		if (Input.GetButtonDown("Fire1")) {
+			GameObject hitbox;
 			if (Input.GetAxis("Vertical") < 0.0f) {
-				GameObject hitbox = Instantiate(hitboxPrefab, transform.position -
-					attackOffsetVertical, transform.rotation);
-				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
-					GetComponent<Collider2D>());
+				hitbox = Instantiate(hitboxPrefab, transform.position +
+					Vector3.down * 1.5f + Vector3.left * 0.24f, transform.rotation);
 			} else if (Input.GetAxis("Vertical") > 0.0f) {
-				GameObject hitbox = Instantiate(hitboxPrefab, transform.position +
-					attackOffsetVertical, transform.rotation);
-				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
-					GetComponent<Collider2D>());
+				hitbox = Instantiate(hitboxPrefab, transform.position +
+					Vector3.up * 1.7f + Vector3.left * 0.24f, transform.rotation);
 			} else if (faceDirection) {
-				GameObject hitbox = Instantiate(hitboxPrefab, transform.position +
-					attackOffsetHorizontal, transform.rotation);
-				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
-					GetComponent<Collider2D>());
+				hitbox = Instantiate(hitboxPrefab, transform.position +
+					Vector3.right * 0.9f, transform.rotation);
 			} else {
-				GameObject hitbox = Instantiate(hitboxPrefab, transform.position -
-					attackOffsetHorizontal, transform.rotation);
-				Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
-					GetComponent<Collider2D>());
+				hitbox = Instantiate(hitboxPrefab, transform.position +
+					Vector3.left * 1.4f, transform.rotation);
 			}
+			Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
+				GetComponent<Collider2D>());
 		}
 	}
 }

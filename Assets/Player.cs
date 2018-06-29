@@ -14,8 +14,6 @@ public class Player : Entity {
 	protected int maxJumpsRemaining;           // Maximum jumps for the player
 	protected int jumpsRemaining;              // Counter to track jumps remaining
 	protected bool faceDirection;              // Left is false, right is true
-	protected Vector3 attackOffsetHorizontal;  // Offset is for facing right
-	protected Vector3 attackOffsetVertical;    // Offset is for facing up
 	protected bool isInAir;
 	protected bool isMovingHorizontal;
 	protected bool isAttacking;
