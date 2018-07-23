@@ -41,7 +41,7 @@ public class TestBoss : Entity {
 	// Random-ish attack pattern
 	private void Attack (int t, Rigidbody2D rb) {
 		if (t - prevBulletTime > 50 && Random.value > 0.95) {
-			Instantiate(bulletPrefab, rb.transform.position + offset, rb.transform.rotation);
+			Instantiate(bulletPrefab, transform.position + offset, transform.rotation);
 			prevBulletTime = t;
 		}
 	}
