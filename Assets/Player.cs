@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Entity {
 
 	public GameObject hitboxPrefab;
+	public GameObject head;
 
 	protected float speed;
 	protected float jumpMultiplier;
@@ -13,8 +14,11 @@ public class Player : Entity {
 	protected int maxJumpsRemaining;           // Maximum jumps for the player
 	protected int jumpsRemaining;              // Counter to track jumps remaining
 	protected bool faceDirection;              // Left is false, right is true
-	protected Vector3 attackOffsetHorizontal;  // Offset is for facing right
-	protected Vector3 attackOffsetVertical;    // Offset is for facing up
+	protected bool isInAir;
+	protected bool isMovingHorizontal;
+	protected bool isAttacking;
+	protected int lastMoving;
+	protected Vector2 defaultHeadPosition;
 
 	// Handles player movement
 	protected void Move () {
@@ -22,6 +26,12 @@ public class Player : Entity {
 		float x = direction * speed;
 		UpdateDirection(direction);
 		float y = JumpCalculate();
+		if (x != 0.0f) {
+			isMovingHorizontal = true;
+			lastMoving = t;
+		} else {
+			isMovingHorizontal = false;
+		}
 		rb.velocity = new Vector2(x, y);
 	}
 
@@ -34,6 +44,26 @@ public class Player : Entity {
 		}
 	}
 
+	protected void Animate () {
+		if (isMovingHorizontal) {
+			float x = defaultHeadPosition.x;
+			if (faceDirection) {
+				x += 0.05f;
+			} else if (!faceDirection) {
+				x -= 0.05f;
+			}
+			head.transform.localPosition = new Vector2(x, defaultHeadPosition.y);
+		} else {
+			if (isInAir) {
+				head.transform.localPosition = defaultHeadPosition;
+			} else {
+				float bobbleOffset = 0.02f * Mathf.Sin(0.1f * (t - lastMoving));
+				head.transform.localPosition = new Vector2(defaultHeadPosition.x,
+					defaultHeadPosition.y - bobbleOffset);
+			}
+		}
+	}
+
 	// A helper function to help calculate jump height
 	// TODO: does the jump feel good enough?
 	protected float JumpCalculate () {
@@ -41,15 +71,16 @@ public class Player : Entity {
 		if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
 			prevJumpStart = t;
 			jumpsRemaining--;
-		}
-		if (Input.GetButton("Jump")) {
+			isInAir = true;
+		}	else if (Input.GetButton("Jump")) {
 			float jumpNormal = 1.0f - 0.1f * (t - prevJumpStart);
 			if (jumpNormal > 0) {
 				y = jumpNormal * jumpMultiplier;
 			}
-		}
-		if (Input.GetButtonUp("Jump")) {
-			y = 0;
+		} else if (Input.GetButtonUp("Jump")) {
+			if (y > 0) {
+				y = 0;
+			}
 		}
 		return y;
 	}
@@ -57,17 +88,13 @@ public class Player : Entity {
 	// Current purpose is to reset jumps when contacting the top of a
 	// "Ground" object or "Platform" object. If connecting with a platform object
 	// from anywhere aside from the top, ignore collisions
-	// TODO: is there a better way to construct colToPlayer and colScale?
+	// TODO: the current raycast solution has some holes
 	public void OnCollisionEnter2D (Collision2D col) {
-		Vector2 colToPlayer = gameObject.GetComponent<Renderer>().bounds.center -
-			col.gameObject.GetComponent<Renderer>().bounds.center;
-		Vector2 colScale = new Vector2(col.gameObject.transform.lossyScale.x,
-			col.gameObject.transform.lossyScale.y);
-		colToPlayer = new Vector2(colToPlayer.x / colScale.x,
-			colToPlayer.y / colScale.y);
 		if (col.gameObject.tag == "Ground" &&
-			colToPlayer.y > Mathf.Abs(colToPlayer.x)) {
+			Physics2D.Raycast(transform.position, Vector2.down,
+			Mathf.Infinity, 9).distance <= 1.0f) {
 			jumpsRemaining = maxJumpsRemaining;
+			isInAir = false;
 		}
 	}
 }
