@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Upgrade {
+public class Upgrade {
 
-	void applyUpgrade ();
+	public int id;
+	public int characterid;
+	public String name;
+	public String description;
 
 }
