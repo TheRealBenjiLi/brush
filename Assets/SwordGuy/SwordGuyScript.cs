@@ -6,6 +6,8 @@ public class SwordGuyScript : Player {
 
 	// Use this for initialization
 	public void Start () {
+		characterid = 0;
+
 		health = 1;
 		damage = 1;
 		this.rb = GetComponent<Rigidbody2D>();
