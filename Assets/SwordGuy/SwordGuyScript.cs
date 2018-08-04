@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class SwordGuyScript : Player {
 
+	public bool lifesteal;
+
 	// Use this for initialization
 	public void Start () {
-		characterid = 0;
+		characterid = 1;
+		playerUpgrades = new List<Upgrade>();
 
-		health = 1;
+		health = 2;
+		maxHealth = 2;
 		damage = 1;
 		this.rb = GetComponent<Rigidbody2D>();
 
@@ -25,6 +29,10 @@ public class SwordGuyScript : Player {
 		isAttacking = false;
 		lastMoving = t;
 		defaultHeadPosition = head.transform.localPosition;
+
+		lifesteal = false;
+
+		ApplyUpgrades();
 	}
 
 	// Update is called once per frame
@@ -54,8 +62,19 @@ public class SwordGuyScript : Player {
 				hitbox = Instantiate(hitboxPrefab, transform.position +
 					Vector3.left * 1.4f, transform.rotation);
 			}
+			hitbox.GetComponent<DestroyOnContact>().creator = this;
+			hitbox.GetComponent<DestroyOnContact>().damage = damage;
 			Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
 				GetComponent<Collider2D>());
+		}
+	}
+
+	public void OnHitSuccess () {
+		if (lifesteal) {
+			health += damage;
+			if (health > maxHealth) {
+				health = maxHealth;
+			}
 		}
 	}
 }

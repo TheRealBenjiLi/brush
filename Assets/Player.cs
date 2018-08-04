@@ -26,7 +26,7 @@ public class Player : Entity {
 	protected void ApplyUpgrades () {
 		for (int i = 0; i < playerUpgrades.Count; i++) {
 			Upgrade u = playerUpgrades[i];
-			u.applyUpgrade(this);
+			u.ApplyUpgrade(this);
 		}
 	}
 
@@ -93,6 +93,10 @@ public class Player : Entity {
 			}
 		}
 		return y;
+	}
+
+	public void OnHitSuccess () {
+
 	}
 
 	// Current purpose is to reset jumps when contacting the top of a

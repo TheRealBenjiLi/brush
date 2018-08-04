@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Upgrade {
+public interface Upgrade {
 
-	public int id;
-	public int characterid;
-	public string name;
-	public string description;
+	// public int id;
+	// public int characterid;
+	// public string name;
+	// public string description;
 
-	public void applyUpgrade(Player player) {
-
-	}
+	void ApplyUpgrade (Player player);
 
 }

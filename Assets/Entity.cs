@@ -5,6 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour {
 
 	protected int health;
+	protected int maxHealth;
 	protected int damage;
 	protected Rigidbody2D rb;
 

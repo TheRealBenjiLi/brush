@@ -80,7 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 1
   targetTag: Enemy
-  damage: 1
+  creator: {fileID: 0}
+  characterid: 1
+  damage: 0
 --- !u!212 &212584286592388310
 SpriteRenderer:
   m_ObjectHideFlags: 1
