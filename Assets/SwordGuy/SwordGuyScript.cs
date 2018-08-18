@@ -53,7 +53,7 @@ public class SwordGuyScript : Player {
 					Vector3.left * 1.4f, transform.rotation);
 			}
 			Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
-				GetComponent<Collider2D>());
+				GetComponent<Collider2D>());	
 		}
 	}
 }
