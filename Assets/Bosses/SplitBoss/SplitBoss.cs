@@ -86,7 +86,6 @@ public class SplitBoss : Entity {
 			Mathf.Infinity, 9).distance <= 1.0f) {
 			lastAction = t;
 			grounded = true;
-			print(grounded);
 		} else {
 			rb.velocity = new Vector2(0, 0);
 		}
