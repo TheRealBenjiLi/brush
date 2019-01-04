@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class UpgradeCenter {
 
-	public static List<Upgrade> allUpgrades = new List<Upgrade>(); 
+	public static List<Upgrade> allUpgrades = new List<Upgrade>() {
+		new Lifesteal()
+	};
 
 }
