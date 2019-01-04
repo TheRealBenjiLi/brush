@@ -65,7 +65,7 @@ public class SwordGuyScript : Player {
 			hitbox.GetComponent<DestroyOnContact>().creator = this;
 			hitbox.GetComponent<DestroyOnContact>().damage = damage;
 			Physics2D.IgnoreCollision(hitbox.GetComponent<Collider2D>(),
-				GetComponent<Collider2D>());
+				GetComponent<Collider2D>());	
 		}
 	}
 
