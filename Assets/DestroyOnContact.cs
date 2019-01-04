@@ -7,6 +7,10 @@ public class DestroyOnContact : MonoBehaviour {
 	// Set this in the Unity editor
 	public int timeLimit;
 	public string targetTag;
+
+	// This traces a hitbox back to its creator
+	public Entity creator;
+	public int characterid;
 	public int damage;
 
 	private int t;
@@ -26,9 +30,13 @@ public class DestroyOnContact : MonoBehaviour {
 		if (col.gameObject.tag == targetTag) {
 			Entity script = col.gameObject.GetComponent<Entity>();
 			script.TakeDamage(damage);
+			if (characterid == 1) {
+				SwordGuyScript p = (SwordGuyScript) creator;
+				p.OnHitSuccess();
+			} else {
+
+			}
 		}
-		if (targetTag == "Player") {
-			Destroy(gameObject);
-		}
+		Destroy(gameObject);
 	}
 }

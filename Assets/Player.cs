@@ -6,6 +6,8 @@ public class Player : Entity {
 
 	public GameObject hitboxPrefab;
 	public GameObject head;
+	public int characterid;
+	public List<Upgrade> playerUpgrades;
 
 	protected float speed;
 	protected float jumpMultiplier;
@@ -19,6 +21,14 @@ public class Player : Entity {
 	protected bool isAttacking;
 	protected int lastMoving;
 	protected Vector2 defaultHeadPosition;
+
+	// Applies all character upgrades. Useful in initializing the player entity
+	protected void ApplyUpgrades () {
+		for (int i = 0; i < playerUpgrades.Count; i++) {
+			Upgrade u = playerUpgrades[i];
+			u.ApplyUpgrade(this);
+		}
+	}
 
 	// Handles player movement
 	protected void Move () {
@@ -83,6 +93,10 @@ public class Player : Entity {
 			}
 		}
 		return y;
+	}
+
+	public void OnHitSuccess () {
+
 	}
 
 	// Current purpose is to reset jumps when contacting the top of a
